@@ -1,6 +1,8 @@
+import { getRandom } from "./helpers.js"
+
 const pathToImg = new Array(10)
     .fill("/images/cards")
-    .map((item, i) => item + `/${i + 1}.jpg`)
+    .map((item, i) => item + `/${i + 1}.webp`)
 
 export const api = async (url, options = {}) => {
     let fetchOptions = options
@@ -42,15 +44,13 @@ export const api = async (url, options = {}) => {
 class CardsApi {
     data = []
     start = 0
-    end = 5
+    end = 10
 
     getCards = async () => {
         this.data = await api(
             `https://jsonplaceholder.typicode.com/posts?_start=${this.start}&_end=${this.end}`,
             {
                 select: async (data) => {
-                    const { getRandom } = await import("./helpers")
-
                     return data.map((item) => ({
                         ...item,
                         img: pathToImg[getRandom(pathToImg.length)],

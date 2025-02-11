@@ -6,7 +6,7 @@ export const cardItem = ({title, body, img}) => {
                 <h3 class="cards__item-name">${title}</h3>
                 <p class="cards__item-subtitle">How to increase your productivity with a Music</p>
                 <p class="cards__item-text">${body}…</p>
-                <p class="cards__item-date">Posted by <span>Eugenia</span>, on July  24, 2019</p>
+                <p class="cards__item-date">Posted by <strong>Eugenia</strong>, on July  24, 2019</p>
                 <button class="cards__item-more">Continue reading</button>
             </div>
         </li>`
