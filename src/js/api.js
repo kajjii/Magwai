@@ -1,4 +1,7 @@
-import { getRandom } from "./helpers.js"
+import { $all, getRandom } from "./helpers.js"
+import { createSkeleton } from "./skeleton.js"
+import { $ } from "./helpers.js"
+
 
 const pathToImg = new Array(10)
     .fill("/images/cards")
@@ -45,9 +48,21 @@ class CardsApi {
     data = []
     start = 0
     end = 10
+    renderCb = null
+
+    showSkeleton(container, flag = false) {
+        const amountTotalCards = flag ? 10 : 5
+        new Array(amountTotalCards).fill("").forEach(() => {
+            container.insertAdjacentHTML("beforeend", createSkeleton())
+        })
+    }
+
+    removeSkeleton() {
+        $all(".skeleton").forEach((node) => node.remove())
+    }
 
     getCards = async () => {
-        this.data = await api(
+        const posts = await api(
             `https://jsonplaceholder.typicode.com/posts?_start=${this.start}&_end=${this.end}`,
             {
                 select: async (data) => {
@@ -58,6 +73,8 @@ class CardsApi {
                 },
             }
         )
+
+        this.data = [...this.data, ...posts]
 
         return this
     }
@@ -70,11 +87,6 @@ class CardsApi {
         return this
     }
 
-    render = (cb) => {
-        cb(this.data)
-
-        return this
-    }
 }
 
 export const cardsApi = new CardsApi()
