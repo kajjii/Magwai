@@ -14,12 +14,13 @@ document.addEventListener("DOMContentLoaded", async () => {
           <div class="server-error-placeholder">
             <h2 class="server-error-title">Упс! Что-то пошло не так</h2>
             <p class="server-error-description">Не удалось подключиться к серверу.
-             Пожалуйста, проверьте ваше интернет-соединение или попробуйте позже.</p>
+            Пожалуйста, проверьте ваше интернет-соединение или попробуйте позже.</p>
             <button class="server-error-retry">Повторить попытку</button>
           </div>
         `;
         cardsContainer.appendChild(errorHolder)
         fetchNextBtn.disabled = true
+        
         const retryButton = $('.server-error-retry');
         retryButton.addEventListener('click', () => {
           getInitialData();

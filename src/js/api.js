@@ -1,6 +1,5 @@
 import { $all, getRandom } from "./helpers.js"
 import { createSkeleton } from "./skeleton.js"
-import { $ } from "./helpers.js"
 
 
 const pathToImg = new Array(10)
